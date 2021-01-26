@@ -48,6 +48,10 @@ public:
     /// <param name="index">The index of the scene to switch to</param>
     static void setCurrentScene(int index);
 
+    /// <summary>
+    /// Moves to the next scene in the scene array if it exists
+    /// </summary>
+    static void goToNextScene();
 
     /// <summary>
     /// Returns true while a key is being pressed

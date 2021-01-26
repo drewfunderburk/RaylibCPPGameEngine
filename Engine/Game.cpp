@@ -31,10 +31,7 @@ void Game::start()
 
 void Game::update(float deltaTime)
 {
-	for (int i = 0; i < m_sceneCount; i++)
-	{
-		m_scenes[i]->update(deltaTime);
-	}
+	getCurrentScene()->update(deltaTime);
 }
 
 void Game::draw()
@@ -44,10 +41,7 @@ void Game::draw()
 	BeginMode2D(*m_camera);
 	ClearBackground(RAYWHITE);
 
-	for (int i = 0; i < m_sceneCount; i++)
-	{
-		m_scenes[i]->draw();
-	}
+	getCurrentScene()->draw();
 
 	EndMode2D();
 	EndDrawing();
@@ -172,6 +166,11 @@ void Game::setCurrentScene(int index)
 
 	//Update the current scene index
 	m_currentSceneIndex = index;
+}
+
+void Game::goToNextScene()
+{
+	setCurrentScene(m_currentSceneIndex + 1);
 }
 
 bool Game::getKeyDown(int key)
