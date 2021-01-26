@@ -58,6 +58,22 @@ namespace MathLibrary
         /// <returns></returns>
         static Vector3 crossProduct(Vector3 lhs, Vector3 rhs);
 
+        /// <summary>
+        /// Interpolates a vector between two points
+        /// </summary>
+        /// <param name="start">Starting position. Returned when time = 0</param>
+        /// <param name="end">Ending position. Returned when time = 1</param>
+        /// <param name="time">How far between the points to travel</param>
+        /// <returns>Interpolated value between start and end equal to a + (b - a) * t</returns>
+        static Vector3 lerp(Vector3 start, Vector3 end, float time);
+
+        /// <summary>
+        /// Finds the distance between two points
+        /// </summary>
+        /// <param name="start">Starting position</param>
+        /// <param name="end">Ending position</param>
+        /// <returns></returns>
+        static float distance(Vector3 start, Vector3 end);
     };
 }
 

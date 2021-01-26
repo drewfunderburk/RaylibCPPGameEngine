@@ -53,12 +53,29 @@ namespace MathLibrary
         static float dotProduct(Vector4 lhs, Vector4 rhs);
 
         /// <summary>
-       /// Returns the cross product of the two vectors given.
-       /// </summary>
-       /// <param name="lhs"></param>
-       /// <param name="rhs"></param>
-       /// <returns></returns>
+        /// Returns the cross product of the two vectors given.
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
         static Vector4 crossProduct(Vector4 lhs, Vector4 rhs);
+
+        /// <summary>
+        /// Interpolates a vector between two points
+        /// </summary>
+        /// <param name="start">Starting position. Returned when time = 0</param>
+        /// <param name="end">Ending position. Returned when time = 1</param>
+        /// <param name="time">How far between the points to travel</param>
+        /// <returns>Interpolated value between start and end equal to a + (b - a) * t</returns>
+        static Vector4 lerp(Vector4 start, Vector4 end, float time);
+
+        /// <summary>
+        /// Finds the distance between two points
+        /// </summary>
+        /// <param name="start">Starting position</param>
+        /// <param name="end">Ending position</param>
+        /// <returns></returns>
+        static float distance(Vector4 start, Vector4 end);
     };
 }
 

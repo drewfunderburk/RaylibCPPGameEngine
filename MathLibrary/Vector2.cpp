@@ -37,7 +37,7 @@ float MathLibrary::Vector2::dotProduct(Vector2 lhs, Vector2 rhs)
     return (lhs.x * rhs.x) + (lhs.y * rhs.y);
 }
 
-float MathLibrary::Vector2::findAngle(Vector2 lhs, Vector2 rhs)
+float MathLibrary::Vector2::angle(Vector2 lhs, Vector2 rhs)
 {
     lhs = normalize(lhs);
     rhs = normalize(rhs);
@@ -61,6 +61,26 @@ float MathLibrary::Vector2::findAngle(Vector2 lhs, Vector2 rhs)
         angle *= perpDot / abs(perpDot);
 
     return angle;
+}
+
+MathLibrary::Vector2 MathLibrary::Vector2::lerp(Vector2 start, Vector2 end, float time)
+{
+    // If the timescale is 0, return the start vector
+    if (time == 0)
+        return start;
+    // If the timescale is set to 1, meaning we travel 100% of the way, return the end vector
+    else if (time == 1)
+        return end;
+    // If the distance between the start and end vector is miniscule, return the end vector
+    else if ((end - start).getMagnitude() < 0.1)
+        return end;
+
+    return start + (end - start) * time;
+}
+
+float MathLibrary::Vector2::distance(Vector2 start, Vector2 end)
+{
+    return sqrt(pow(end.x - start.y, 2) + pow(end.y - start.y, 2));
 }
 
 MathLibrary::Vector2 MathLibrary::Vector2::operator +(Vector2 rhs)

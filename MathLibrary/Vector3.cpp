@@ -45,6 +45,26 @@ MathLibrary::Vector3 MathLibrary::Vector3::crossProduct(Vector3 lhs, Vector3 rhs
     return Vector3((lhs.y * rhs.z) - (lhs.z * rhs.y), (lhs.z * rhs.x) - (lhs.x * rhs.z), (lhs.x * rhs.y) - (lhs.y * rhs.x));
 }
 
+MathLibrary::Vector3 MathLibrary::Vector3::lerp(Vector3 start, Vector3 end, float time)
+{
+    // If the timescale is 0, return the start vector
+    if (time == 0)
+        return start;
+    // If the timescale is set to 1, meaning we travel 100% of the way, return the end vector
+    else if (time == 1)
+        return end;
+    // If the distance between the start and end vector is miniscule, return the end vector
+    else if ((end - start).getMagnitude() < 0.1)
+        return end;
+
+    return start + (end - start) * time;
+}
+
+float MathLibrary::Vector3::distance(Vector3 start, Vector3 end)
+{
+    return sqrt(pow(end.x - start.y, 2) + pow(end.y - start.y, 2) + pow(end.z - start.z, 2));
+}
+
 MathLibrary::Vector3 MathLibrary::Vector3::operator +(Vector3 rhs)
 {
     return Vector3(x + rhs.x, y + rhs.y, z + rhs.z);
