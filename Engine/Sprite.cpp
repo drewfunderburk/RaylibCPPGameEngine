@@ -7,11 +7,13 @@
 Sprite::Sprite(Texture2D* texture)
 {
     m_texture = texture;
+    m_scale = 1;
 }
 
 Sprite::Sprite(const char* path)
 {
     m_texture = new Texture2D(RAYLIB_H::LoadTexture(path));
+    m_scale = 1;
 }
 
 int Sprite::getWidth()
@@ -46,8 +48,8 @@ void Sprite::draw(MathLibrary::Matrix3 transform)
     MathLibrary::Vector2 pos = MathLibrary::Vector2(transform.m13, transform.m23);
     MathLibrary::Vector2 forward = MathLibrary::Vector2(transform.m11, transform.m21);
     MathLibrary::Vector2 up = MathLibrary::Vector2(transform.m12, transform.m22);
-    pos = pos - (forward.getNormalized() * getWidth() / 2);
-    pos = pos - (up.getNormalized() * getHeight() / 2);
+    pos = pos - (forward.getNormalized() * (getWidth() / 2.0) * m_scale);
+    pos = pos - (up.getNormalized() * (getHeight() / 2.0) * m_scale);
 
     //Find the transform rotation in radians 
     float rotation = atan2(transform.m21, transform.m11);
@@ -55,8 +57,6 @@ void Sprite::draw(MathLibrary::Matrix3 transform)
 
     //Draw the sprite
     RAYLIB_H::DrawTextureEx(*m_texture, rayPos,
-        (float)(rotation * 180.0f / PI), 32, WHITE);
-
-    DrawRectangleLines(rayPos.x, rayPos.y, getWidth() * 32, getHeight() * 32, RED);
+        (float)(rotation * 180.0f / PI), m_scale, WHITE);
 }
 

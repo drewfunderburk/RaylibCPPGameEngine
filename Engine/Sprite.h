@@ -46,7 +46,11 @@ public:
     /// <param name="transform"></param>
     void draw(MathLibrary::Matrix3 transform);
 
+    float getScale() { return m_scale; }
+    void setScale(float scale) { m_scale = scale; }
+
 private:
     Texture2D* m_texture;
+    float m_scale;
 };
 
