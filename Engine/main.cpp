@@ -11,7 +11,6 @@
 
 #include "raylib.h"
 #include "Game.h"
-#include <Vector2.h>
 
 int main()
 {
@@ -19,6 +18,5 @@ int main()
 
 	game.run();
 
-	Vector2 test;
 	return 0;
 }
